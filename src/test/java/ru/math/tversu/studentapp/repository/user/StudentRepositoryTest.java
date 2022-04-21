@@ -1,4 +1,4 @@
-package ru.math.tversu.studentapp.repository;
+package ru.math.tversu.studentapp.repository.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
