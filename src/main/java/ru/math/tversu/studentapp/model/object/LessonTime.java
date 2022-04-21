@@ -1,5 +1,7 @@
 package ru.math.tversu.studentapp.model.object;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +9,7 @@ import javax.validation.constraints.Pattern;
 import java.time.DayOfWeek;
 
 @Entity
+@Data
 public class LessonTime {
     @Id
     private Integer id;
@@ -18,36 +21,4 @@ public class LessonTime {
     private String endTime;
     @Column(name = "weekday")
     private DayOfWeek weekday;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public DayOfWeek getWeekday() {
-        return weekday;
-    }
-
-    public void setWeekday(DayOfWeek weekday) {
-        this.weekday = weekday;
-    }
 }
