@@ -6,5 +6,5 @@ import ru.math.tversu.studentapp.model.object.Lesson;
 import java.util.List;
 
 public interface LessonRepository extends CrudRepository<Lesson, Integer> {
-	List<Lesson> findAll();
+    List<Lesson> findAll();
 }

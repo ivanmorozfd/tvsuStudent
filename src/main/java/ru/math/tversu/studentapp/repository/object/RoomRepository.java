@@ -6,5 +6,5 @@ import ru.math.tversu.studentapp.model.object.Room;
 import java.util.List;
 
 public interface RoomRepository extends CrudRepository<Room, Integer> {
-	List<Room> findAll();
+    List<Room> findAll();
 }

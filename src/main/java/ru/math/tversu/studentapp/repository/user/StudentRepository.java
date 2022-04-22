@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface StudentRepository extends CrudRepository<Student, Integer> {
 	List<Student> findAll();
+	Student findOneByUsername(String username);
 }

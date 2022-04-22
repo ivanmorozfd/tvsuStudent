@@ -23,6 +23,4 @@ public class ScheduleItem {
 	private Room room;
 	@ManyToOne
 	private StudyGroup studyGroup;
-	@ManyToOne
-	private Schedule schedule;
 }
