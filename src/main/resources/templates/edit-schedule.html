@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Schedule</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>ID</tr>
+    <tr>Lesson</tr>
+    <tr>Room</tr>
+    <tr>Group</tr>
+    <tr>Teacher</tr>
+    <tr>Time</tr>
+    </thead>
+    <tbody>
+    <tr th:if="${schedule.items.isEmpty()}">
+        <td colspan="6">No items in this Schedule</td>
+    </tr>
+    <tr th:each="item : ${schedule.items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.lesson.name}"></td>
+        <td th:text="${item.room.number}"></td>
+        <td th:text="${item.studyGroup.name}"></td>
+        <td th:text="${item.teacher.title + ' ' + item.teacher.username}"></td>
+        <td th:text="${item.time.weekday + ' ' + item.time.startTime + ' ' + item.time.endTime}"></td>
+        <td>
+            <form id="deleteItem" th:action="'/schedule/management/' + ${schedule.id} + '/delete/' + ${item.id}" method="post">
+                <input type="hidden" name="id" th:value="${item.id}" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>

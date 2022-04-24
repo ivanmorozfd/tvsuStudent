@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Management</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Schedule ID</td>
+        <td>link</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${schedules.isEmpty()}">
+        <td colspan="2">No schedules</td>
+    </tr>
+    <tr th:each="schedule : ${schedules}">
+        <td th:text="${schedule.id}"></td>
+        <td><a th:href="@{/schedule/management/} + ${schedule.id}" th:text="Edit"></td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/home}">Back</p>
+</body>
+</html>

@@ -25,8 +25,21 @@ public class ScheduleController {
     }
 
     @RequestMapping(path = "/management", method = RequestMethod.GET)
-    public String getManagement(Model model) {
-        return "scheduleManagement";
+    public String getGlobalManagement(Model model) {
+        model.addAttribute("schedules", scheduleFacade.getAll());
+        return "schedules-management";
+    }
+
+    @RequestMapping(path = "/management/{id}", method = RequestMethod.GET)
+    public String manageScheduleById(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("schedule", scheduleFacade.getById(id));
+        return "edit-schedule";
+    }
+
+    @RequestMapping(path = "/management/{scheduleId}/delete/{itemId}", method = RequestMethod.POST)
+    public String deleteItem(@PathVariable("scheduleId") Integer scheduleId, @PathVariable("itemId") Integer itemId, Model model) {
+        scheduleFacade.deleteItemById(scheduleId, itemId);
+        return "redirect:/schedule/management/{scheduleId}";
     }
 
     @RequestMapping(method = RequestMethod.POST)

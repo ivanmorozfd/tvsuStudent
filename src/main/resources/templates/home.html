@@ -21,7 +21,7 @@
                     </tr>
                     <tr th:each="schedule : ${schedules}">
                         <td th:text="${schedule.id}"></td>
-                        <td><a th:href="@{/schedule/} + ${schedule.id}" th:text="Link"></td>
+                        <td><a th:href="@{/schedule/} + ${schedule.id}" th:text="View"></td>
                     </tr>
                 </tbody>
             </table>

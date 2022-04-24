@@ -46,4 +46,19 @@ public class ScheduleFacade {
         return schedule;
     }
 
+    public List<Schedule> getAll() {
+        return scheduleService.getAll();
+    }
+
+    public void deleteById(Integer id) {
+        scheduleService.deleteById(id);
+    }
+
+    public void deleteItemById(Integer scheduleId, Integer itemId) {
+        Schedule schedule = scheduleService.getById(scheduleId);
+        schedule.setItems(schedule.getItems().stream().filter(item -> !item.getId().equals(itemId)).collect(Collectors.toList()));
+        save(schedule);
+        scheduleService.deleteItemById(itemId);
+    }
+
 }

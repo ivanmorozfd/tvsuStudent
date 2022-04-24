@@ -7,7 +7,4 @@ import java.util.List;
 
 public interface ScheduleRepository extends CrudRepository<Schedule, Integer> {
     List<Schedule> findAll();
-
-    @Override
-    <S extends Schedule> S save(S entity);
 }
