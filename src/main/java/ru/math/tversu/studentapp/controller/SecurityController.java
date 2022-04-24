@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SecurityController {
-	private Logger logger = LoggerFactory.getLogger(SecurityController.class);
+    private Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
-	@GetMapping(value = {"/", "/login"})
-	public String login() {
-		return "login";
-	}
+    @GetMapping(value = {"/", "/login"})
+    public String login() {
+        return "redirect:/home";
+    }
 }

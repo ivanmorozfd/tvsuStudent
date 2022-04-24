@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h3 th:inline="text"></h3>
+        <p th:text="'Hello, ' + ${username}"></p>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Schedule ID</td>
+                        <td>link</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${schedules.isEmpty()}">
+                        <td colspan="2">No schedules</td>
+                    </tr>
+                    <tr th:each="schedule : ${schedules}">
+                        <td th:text="${schedule.id}"></td>
+                        <td><a th:href="@{/schedule/} + ${schedule.id}" th:text="Link"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+</body>
+</html>

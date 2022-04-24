@@ -9,10 +9,18 @@ import java.util.List;
 
 @Service
 public class ScheduleService {
-	@Autowired
-	private ScheduleRepository scheduleRepository;
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
-	public List<Schedule> getAll() {
-		return scheduleRepository.findAll();
-	}
+    public List<Schedule> getAll() {
+        return scheduleRepository.findAll();
+    }
+
+    public Schedule save(Schedule entity) {
+        return scheduleRepository.save(entity);
+    }
+
+    public Schedule getById(Integer id) {
+        return scheduleRepository.findById(id).orElse(new Schedule());
+    }
 }
