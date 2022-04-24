@@ -29,6 +29,7 @@ public class HomeController {
         List<Schedule> schedulesForUsername = scheduleFacade.getSchedulesForUsername(user.getUsername());
         model.addAttribute("username", user.getUsername());
         model.addAttribute("schedules", schedulesForUsername);
+        model.addAttribute("role", user.getRole());
         return "home";
     }
 }

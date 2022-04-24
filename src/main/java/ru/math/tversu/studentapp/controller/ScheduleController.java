@@ -24,6 +24,11 @@ public class ScheduleController {
         return "schedule";
     }
 
+    @RequestMapping(path = "/management", method = RequestMethod.GET)
+    public String getManagement(Model model) {
+        return "scheduleManagement";
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public Schedule saveSchedule(@RequestBody Schedule schedule) {
         return scheduleFacade.save(schedule);

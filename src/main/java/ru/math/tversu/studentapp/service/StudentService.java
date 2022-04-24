@@ -13,4 +13,8 @@ public class StudentService {
 	public Student getStudentByUsername(String username) {
 		return studentRepository.findOneByUsername(username);
 	}
+
+	public Student getById(Integer id) {
+		return studentRepository.findById(id).orElse(new Student());
+	}
 }

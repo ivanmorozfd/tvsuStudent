@@ -26,6 +26,7 @@
                 </tbody>
             </table>
         </div>
+        <p th:if="${role} == 'teacher'"><a th:href="@{/schedule/management/}">Manage schedules</p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Logout"/>
         </form>
