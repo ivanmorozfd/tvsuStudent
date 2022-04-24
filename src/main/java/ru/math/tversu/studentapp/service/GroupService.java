@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.math.tversu.studentapp.model.user.StudyGroup;
 import ru.math.tversu.studentapp.repository.user.GroupRepository;
 
+import java.util.List;
+
 @Service
 public class GroupService {
 	@Autowired
@@ -12,5 +14,9 @@ public class GroupService {
 
 	public StudyGroup getGroupByStudentUsername(String username) {
 		return groupRepository.findGroupByStudentUsername(username);
+	}
+
+	public List<StudyGroup> getAll() {
+		return groupRepository.findAll();
 	}
 }

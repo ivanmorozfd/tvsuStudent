@@ -3,6 +3,7 @@ package ru.math.tversu.studentapp.facade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.math.tversu.studentapp.model.object.Schedule;
+import ru.math.tversu.studentapp.model.object.ScheduleItem;
 import ru.math.tversu.studentapp.model.user.Student;
 import ru.math.tversu.studentapp.model.user.StudyGroup;
 import ru.math.tversu.studentapp.service.ScheduleService;
@@ -38,6 +39,10 @@ public class ScheduleFacade {
         return scheduleService.save(entity);
     }
 
+    public ScheduleItem saveItem(ScheduleItem item) {
+        return scheduleService.saveItem(item);
+    }
+
     public Schedule getById(Integer id) {
         Schedule schedule = scheduleService.getById(id);
         if (schedule != null && schedule.getItems() == null) {
@@ -48,6 +53,10 @@ public class ScheduleFacade {
 
     public List<Schedule> getAll() {
         return scheduleService.getAll();
+    }
+
+    public ScheduleItem getItemById(Integer id) {
+        return scheduleService.getItemById(id);
     }
 
     public void deleteById(Integer id) {

@@ -4,12 +4,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ru.math.tversu.studentapp.facade.ScheduleFacade;
-import ru.math.tversu.studentapp.model.object.Schedule;
+import ru.math.tversu.studentapp.model.object.*;
+import ru.math.tversu.studentapp.model.user.StudyGroup;
+import ru.math.tversu.studentapp.model.user.Teacher;
+import ru.math.tversu.studentapp.service.*;
 
 @Controller
 @RequestMapping("/schedule")
@@ -17,6 +17,17 @@ import ru.math.tversu.studentapp.model.object.Schedule;
 public class ScheduleController {
     @Autowired
     private ScheduleFacade scheduleFacade;
+
+    @Autowired
+    private LessonService lessonService;
+    @Autowired
+    private RoomService roomService;
+    @Autowired
+    private GroupService groupService;
+    @Autowired
+    private TeacherService teacherService;
+    @Autowired
+    private LessonTimeService lessonTimeService;
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public String getSchedules(@PathVariable("id") Integer id, Model model) {
@@ -34,6 +45,37 @@ public class ScheduleController {
     public String manageScheduleById(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("schedule", scheduleFacade.getById(id));
         return "edit-schedule";
+    }
+
+    @RequestMapping(path = "/management/{scheduleId}/edit/{itemId}", method = RequestMethod.GET)
+    public String editItem(@PathVariable("scheduleId") Integer scheduleId, @PathVariable("itemId") Integer itemId, Model model) {
+        model.addAttribute("rooms", roomService.getAll());
+        model.addAttribute("lessons", lessonService.getAll());
+        model.addAttribute("groups", groupService.getAll());
+        model.addAttribute("teachers", teacherService.getAll());
+        model.addAttribute("times", lessonTimeService.getAll());
+        model.addAttribute("item", scheduleFacade.getItemById(itemId));
+        return "edit-item";
+    }
+
+    @RequestMapping(path = "/management/{scheduleId}/update/{itemId}", method = RequestMethod.POST)
+    public String updateItem(
+            @PathVariable("scheduleId") Integer scheduleId,
+            @PathVariable("itemId") Integer itemId,
+            @ModelAttribute Lesson lesson,
+            @ModelAttribute Room room,
+            @ModelAttribute StudyGroup studyGroup,
+            @ModelAttribute Teacher teacher,
+            @ModelAttribute LessonTime lessonTime,
+            Model model) {
+        ScheduleItem item = scheduleFacade.getItemById(itemId);
+        item.setLesson(lesson);
+        item.setRoom(room);
+        item.setStudyGroup(studyGroup);
+        item.setTeacher(teacher);
+        item.setLessonTime(lessonTime);
+        scheduleFacade.saveItem(item);
+        return "redirect:/schedule/management/{scheduleId}";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/delete/{itemId}", method = RequestMethod.POST)

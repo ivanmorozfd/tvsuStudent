@@ -18,7 +18,7 @@ public class ScheduleItem {
 	@ManyToOne
 	private Teacher teacher;
 	@ManyToOne
-	private LessonTime time;
+	private LessonTime lessonTime;
 	@ManyToOne
 	private Room room;
 	@ManyToOne

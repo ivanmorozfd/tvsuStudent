@@ -24,6 +24,10 @@ public class ScheduleService {
         return scheduleRepository.save(entity);
     }
 
+    public ScheduleItem saveItem(ScheduleItem item) {
+        return scheduleItemRepository.save(item);
+    }
+
     public Schedule getById(Integer id) {
         return scheduleRepository.findById(id).orElse(new Schedule());
     }
@@ -39,4 +43,5 @@ public class ScheduleService {
     public void deleteItemById(Integer id) {
         scheduleItemRepository.deleteById(id);
     }
+
 }
