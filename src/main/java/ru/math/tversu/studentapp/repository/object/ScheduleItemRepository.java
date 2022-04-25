@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ScheduleItemRepository extends CrudRepository<ScheduleItem, Integer> {
     List<ScheduleItem> findAll();
+    ScheduleItem findFirstByOrderByIdDesc();
 }

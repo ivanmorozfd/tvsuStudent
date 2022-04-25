@@ -61,7 +61,7 @@ public class ScheduleController {
     @RequestMapping(path = "/management/{scheduleId}/update/{itemId}", method = RequestMethod.POST)
     public String updateItem(
             @PathVariable("scheduleId") Integer scheduleId,
-            @PathVariable("itemId") Integer itemId,
+            @PathVariable(value = "itemId") Integer itemId,
             @ModelAttribute Lesson lesson,
             @ModelAttribute Room room,
             @ModelAttribute StudyGroup studyGroup,
@@ -75,6 +75,36 @@ public class ScheduleController {
         item.setTeacher(teacher);
         item.setLessonTime(lessonTime);
         scheduleFacade.saveItem(item);
+        return "redirect:/schedule/management/{scheduleId}";
+    }
+
+    @RequestMapping(path = "/management/{scheduleId}/create", method = RequestMethod.GET)
+    public String getCreateForm(@PathVariable("scheduleId") Integer scheduleId, Model model) {
+        model.addAttribute("rooms", roomService.getAll());
+        model.addAttribute("lessons", lessonService.getAll());
+        model.addAttribute("groups", groupService.getAll());
+        model.addAttribute("teachers", teacherService.getAll());
+        model.addAttribute("times", lessonTimeService.getAll());
+        model.addAttribute("item", new ScheduleItem());
+        return "create-item";
+    }
+
+    @RequestMapping(path = "/management/{scheduleId}/create", method = RequestMethod.POST)
+    public String createItem(
+            @PathVariable("scheduleId") Integer scheduleId,
+            @ModelAttribute Lesson lesson,
+            @ModelAttribute Room room,
+            @ModelAttribute StudyGroup studyGroup,
+            @ModelAttribute Teacher teacher,
+            @ModelAttribute LessonTime lessonTime,
+            Model model) {
+        ScheduleItem item = scheduleFacade.createEntity();
+        item.setLesson(lesson);
+        item.setRoom(room);
+        item.setStudyGroup(studyGroup);
+        item.setTeacher(teacher);
+        item.setLessonTime(lessonTime);
+        scheduleFacade.saveItem(item, scheduleId);
         return "redirect:/schedule/management/{scheduleId}";
     }
 

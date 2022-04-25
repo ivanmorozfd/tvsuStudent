@@ -10,7 +10,10 @@ import ru.math.tversu.studentapp.service.ScheduleService;
 import ru.math.tversu.studentapp.service.StudentService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +44,20 @@ public class ScheduleFacade {
 
     public ScheduleItem saveItem(ScheduleItem item) {
         return scheduleService.saveItem(item);
+    }
+
+    public ScheduleItem saveItem(ScheduleItem item, Integer scheduleId) {
+        Schedule schedule = scheduleService.getById(scheduleId);
+        List<ScheduleItem> items = schedule.getItems();
+        items.add(item);
+        schedule.setItems(items);
+        ScheduleItem scheduleItem = scheduleService.saveItem(item);
+        scheduleService.save(schedule);
+        return scheduleItem;
+    }
+
+    public ScheduleItem createEntity() {
+        return scheduleService.createEntity();
     }
 
     public Schedule getById(Integer id) {

@@ -20,6 +20,13 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
+    public ScheduleItem createEntity() {
+        Integer lastId = scheduleItemRepository.findFirstByOrderByIdDesc().getId();
+        ScheduleItem item = new ScheduleItem();
+        item.setId(++lastId);
+        return item;
+    }
+
     public Schedule save(Schedule entity) {
         return scheduleRepository.save(entity);
     }
