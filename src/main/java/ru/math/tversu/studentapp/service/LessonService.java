@@ -15,4 +15,27 @@ public class LessonService {
     public List<Lesson> getAll() {
         return lessonRepository.findAll();
     }
+
+    public Lesson getById(Integer id) {
+        return lessonRepository.findById(id).orElse(new Lesson());
+    }
+
+    public Lesson save(Lesson lesson) {
+        return lessonRepository.save(lesson);
+    }
+
+    public Lesson createEntity() {
+        Integer lastId = lessonRepository.findFirstByOrderByIdDesc().getId();
+        Lesson lesson = new Lesson();
+        lesson.setId(++lastId);
+        return lesson;
+    }
+
+    public Lesson getNotBoundToAnyScheduleById(Integer id) {
+        return lessonRepository.findOneNotBoundToAnyScheduleById(id);
+    }
+
+    public void deleteById(Integer id) {
+        lessonRepository.deleteById(id);
+    }
 }

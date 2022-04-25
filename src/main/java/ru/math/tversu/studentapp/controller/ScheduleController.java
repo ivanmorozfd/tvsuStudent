@@ -40,13 +40,13 @@ public class ScheduleController {
     @RequestMapping(path = "/management", method = RequestMethod.GET)
     public String getGlobalManagement(Model model) {
         model.addAttribute("schedules", scheduleFacade.getAll());
-        return "management/manage-schedules";
+        return "management/schedule/manage-schedules";
     }
 
     @RequestMapping(path = "/management/{id}", method = RequestMethod.GET)
     public String manageScheduleById(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("schedule", scheduleFacade.getById(id));
-        return "management/edit-schedule";
+        return "management/schedule/edit-schedule";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/edit/{itemId}", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class ScheduleController {
         model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("times", lessonTimeService.getAll());
         model.addAttribute("item", scheduleFacade.getItemById(itemId));
-        return "management/edit-item";
+        return "management/schedule/edit-item";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/update/{itemId}", method = RequestMethod.POST)
@@ -85,7 +85,7 @@ public class ScheduleController {
         Schedule schedule = new Schedule();
         schedule.setItems(new LinkedList<>());
         model.addAttribute("schedule", schedule);
-        return "management/create-schedule";
+        return "management/schedule/create-schedule";
     }
 
     @RequestMapping(path = "/management/create", method = RequestMethod.POST)
@@ -102,7 +102,7 @@ public class ScheduleController {
         model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("times", lessonTimeService.getAll());
         model.addAttribute("item", new ScheduleItem());
-        return "management/create-item";
+        return "management/schedule/create-item";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/create", method = RequestMethod.POST)
