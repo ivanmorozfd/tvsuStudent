@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ScheduleRepository extends CrudRepository<Schedule, Integer> {
     List<Schedule> findAll();
+    Schedule findFirstByOrderByIdDesc();
 }

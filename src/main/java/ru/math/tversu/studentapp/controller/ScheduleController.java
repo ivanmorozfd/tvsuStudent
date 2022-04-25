@@ -11,6 +11,8 @@ import ru.math.tversu.studentapp.model.user.StudyGroup;
 import ru.math.tversu.studentapp.model.user.Teacher;
 import ru.math.tversu.studentapp.service.*;
 
+import java.util.LinkedList;
+
 @Controller
 @RequestMapping("/schedule")
 @Log4j2
@@ -38,7 +40,7 @@ public class ScheduleController {
     @RequestMapping(path = "/management", method = RequestMethod.GET)
     public String getGlobalManagement(Model model) {
         model.addAttribute("schedules", scheduleFacade.getAll());
-        return "management/schedules-management";
+        return "management/manage-schedules";
     }
 
     @RequestMapping(path = "/management/{id}", method = RequestMethod.GET)
@@ -78,8 +80,22 @@ public class ScheduleController {
         return "redirect:/schedule/management/{scheduleId}";
     }
 
+    @RequestMapping(path = "/management/create", method = RequestMethod.GET)
+    public String getCreateForm(Model model) {
+        Schedule schedule = new Schedule();
+        schedule.setItems(new LinkedList<>());
+        model.addAttribute("schedule", schedule);
+        return "management/create-schedule";
+    }
+
+    @RequestMapping(path = "/management/create", method = RequestMethod.POST)
+    public String create() {
+        scheduleFacade.save(scheduleFacade.createEntity());
+        return "redirect:/schedule/management/";
+    }
+
     @RequestMapping(path = "/management/{scheduleId}/create", method = RequestMethod.GET)
-    public String getCreateForm(@PathVariable("scheduleId") Integer scheduleId, Model model) {
+    public String getCreateItemForm(@PathVariable("scheduleId") Integer scheduleId, Model model) {
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("lessons", lessonService.getAll());
         model.addAttribute("groups", groupService.getAll());
@@ -96,9 +112,8 @@ public class ScheduleController {
             @ModelAttribute Room room,
             @ModelAttribute StudyGroup studyGroup,
             @ModelAttribute Teacher teacher,
-            @ModelAttribute LessonTime lessonTime,
-            Model model) {
-        ScheduleItem item = scheduleFacade.createEntity();
+            @ModelAttribute LessonTime lessonTime) {
+        ScheduleItem item = scheduleFacade.createItemEntity();
         item.setLesson(lesson);
         item.setRoom(room);
         item.setStudyGroup(studyGroup);
@@ -109,9 +124,18 @@ public class ScheduleController {
     }
 
     @RequestMapping(path = "/management/{scheduleId}/delete/{itemId}", method = RequestMethod.POST)
-    public String deleteItem(@PathVariable("scheduleId") Integer scheduleId, @PathVariable("itemId") Integer itemId, Model model) {
+    public String deleteItem(@PathVariable("scheduleId") Integer scheduleId, @PathVariable("itemId") Integer itemId) {
         scheduleFacade.deleteItemById(scheduleId, itemId);
         return "redirect:/schedule/management/{scheduleId}";
+    }
+
+    @RequestMapping(path = "/management/delete/{scheduleId}", method = RequestMethod.POST)
+    public String deleteSchedule(@PathVariable("scheduleId")Integer scheduleId) {
+        Schedule schedule = scheduleFacade.getById(scheduleId);
+        if (schedule != null && schedule.getItems().isEmpty()) {
+            scheduleFacade.deleteById(scheduleId);
+        }
+        return "redirect:/schedule/management/";
     }
 
     @RequestMapping(method = RequestMethod.POST)
