@@ -38,13 +38,13 @@ public class ScheduleController {
     @RequestMapping(path = "/management", method = RequestMethod.GET)
     public String getGlobalManagement(Model model) {
         model.addAttribute("schedules", scheduleFacade.getAll());
-        return "schedules-management";
+        return "management/schedules-management";
     }
 
     @RequestMapping(path = "/management/{id}", method = RequestMethod.GET)
     public String manageScheduleById(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("schedule", scheduleFacade.getById(id));
-        return "edit-schedule";
+        return "management/edit-schedule";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/edit/{itemId}", method = RequestMethod.GET)
@@ -55,7 +55,7 @@ public class ScheduleController {
         model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("times", lessonTimeService.getAll());
         model.addAttribute("item", scheduleFacade.getItemById(itemId));
-        return "edit-item";
+        return "management/edit-item";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/update/{itemId}", method = RequestMethod.POST)
@@ -86,7 +86,7 @@ public class ScheduleController {
         model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("times", lessonTimeService.getAll());
         model.addAttribute("item", new ScheduleItem());
-        return "create-item";
+        return "management/create-item";
     }
 
     @RequestMapping(path = "/management/{scheduleId}/create", method = RequestMethod.POST)
