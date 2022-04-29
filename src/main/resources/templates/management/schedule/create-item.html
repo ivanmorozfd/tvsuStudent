@@ -30,7 +30,7 @@
 
     <label for="time">Time</label>
     <select id="time" th:object="${item}" th:field="*{lessonTime}">
-        <option th:each="time : ${times}" th:value="${time.id}" th:text="${time.id}"></option>
+        <option th:each="time : ${times}" th:value="${time.id}" th:text="${time.startTime + '-' + time.endTime + ' ' + time.weekday}"></option>
     </select>
     <input type="submit" value="Save">
 </form>
