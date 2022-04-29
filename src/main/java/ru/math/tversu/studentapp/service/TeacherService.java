@@ -19,4 +19,12 @@ public class TeacherService {
     public Teacher getById(Integer id) {
         return teacherRepository.findById(id).orElse(new Teacher());
     }
+
+    public Teacher getNotBoundToAnyScheduleById(Integer id) {
+        return teacherRepository.findOneNotBoundToAnyScheduleById(id);
+    }
+
+    public Teacher save(Teacher teacher) {
+        return teacherRepository.save(teacher);
+    }
 }

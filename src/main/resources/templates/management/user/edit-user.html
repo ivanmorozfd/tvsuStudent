@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Teacher</title>
+</head>
+<body>
+<form action="updateUser"
+      th:action="@{/user/} + ${user.id}" method="post">
+    <h3 th:text="'Username: ' + ${user.username}"></h3>
+    <input type="hidden" th:value="${user.username}" name="username" id="username">
+    <input type="hidden" th:value="${user.password}" name="password" id="password">
+    <input type="hidden" th:value="${user.role}" name="role" id="role">
+    <label for="passwordChange">Password</label>
+    <input type="password" name="passwordChange" id="passwordChange">
+    <label for="roleStub">Role</label>
+    <input type="text" disabled="disabled" th:value="${user.role}" name="role" id="roleStub">
+    <label for="enabled">Enabled</label>
+    <input type="checkbox" th:checked="${user.enabled}" name="enabled" id="enabled">
+    <select th:if="${user.role == 'teacher'}" id="title" th:object="${user}" th:field="*{title}">
+        <option th:each="title : ${titles}" th:value="${title.id}" th:text="${title.name}"></option>
+    </select>
+    <select th:if="${user.role == 'student'}" id="studyGroup" th:object="${user}" th:field="*{studyGroup}">
+        <option th:each="studyGroup : ${studyGroups}" th:value="${studyGroup.id}" th:text="${studyGroup.name}"></option>
+    </select>
+    <input type="submit" value="Save">
+</form>
+<p><a th:href="@{/user}">Back</p>
+</body>
+</html>

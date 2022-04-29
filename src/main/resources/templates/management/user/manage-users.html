@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+</head>
+<body>
+<h1>Users Management</h1>
+<table>
+    <thead>
+    <td>ID</td>
+    <td>Username</td>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td><a th:href="@{/user/} + ${user.id}" th:text="Edit"></td>
+    </tbody>
+</table>
+<p><a th:href="@{/user/create/}">Create New User</p>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>

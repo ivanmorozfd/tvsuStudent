@@ -23,7 +23,7 @@ public class ScheduleFacade {
     public List<Schedule> getSchedulesForUsername(String username) {
         Student currentStudent = studentService.getStudentByUsername(username);
         if (currentStudent != null) {
-            StudyGroup currentStudentGroup = currentStudent.getGroup();
+            StudyGroup currentStudentGroup = currentStudent.getStudyGroup();
             if (currentStudentGroup != null) {
                 return scheduleService.getAll().stream().filter(
                         schedule -> schedule.getItems().stream().anyMatch(

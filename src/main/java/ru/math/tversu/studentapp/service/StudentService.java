@@ -17,4 +17,8 @@ public class StudentService {
 	public Student getById(Integer id) {
 		return studentRepository.findById(id).orElse(new Student());
 	}
+
+	public Student save(Student student) {
+		return studentRepository.save(student);
+	}
 }
