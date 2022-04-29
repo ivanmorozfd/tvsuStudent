@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Room</title>
+</head>
+<body>
+<form action="updateRoom"
+      th:action="@{/room/} + ${room.id}" method="post">
+    <label for="number">Number</label>
+    <input type="text" th:value="${room.number}" name="number" id="number">
+    <input type="submit" value="Save">
+</form>
+<form th:if="${inactive}" id="deleteRoom" th:action="'/room/delete/' + ${room.id}" method="post">
+    <input type="hidden" name="id" th:value="${room.id}" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+<p><a th:href="@{/room}">Back</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Rooms</title>
+</head>
+<body>
+<h1>Rooms Management</h1>
+<table>
+    <thead>
+        <td>ID</td>
+        <td>Number</td>
+    </thead>
+    <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.id}"></td>
+            <td th:text="${room.number}"></td>
+            <td><a th:href="@{/room/} + ${room.id}" th:text="Edit"></td>
+    </tbody>
+</table>
+<p><a th:href="@{/room/create/}">Create New Room</p>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>
