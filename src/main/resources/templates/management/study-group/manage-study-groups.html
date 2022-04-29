@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Study Groups</title>
+</head>
+<body>
+<h1>Study Groups Management</h1>
+<table>
+    <thead>
+        <td>ID</td>
+        <td>Name</td>
+    </thead>
+    <tbody>
+        <tr th:each="studyGroup : ${studyGroups}">
+            <td th:text="${studyGroup.id}"></td>
+            <td th:text="${studyGroup.name}"></td>
+            <td><a th:href="@{/studyGroup/} + ${studyGroup.id}" th:text="Edit"></td>
+    </tbody>
+</table>
+<p><a th:href="@{/studyGroup/create/}">Create New Study Group</p>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>

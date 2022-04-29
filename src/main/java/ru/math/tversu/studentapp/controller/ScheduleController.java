@@ -25,7 +25,7 @@ public class ScheduleController {
     @Autowired
     private RoomService roomService;
     @Autowired
-    private GroupService groupService;
+    private StudyGroupService studyGroupService;
     @Autowired
     private TeacherService teacherService;
     @Autowired
@@ -53,7 +53,7 @@ public class ScheduleController {
     public String editItem(@PathVariable("scheduleId") Integer scheduleId, @PathVariable("itemId") Integer itemId, Model model) {
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("lessons", lessonService.getAll());
-        model.addAttribute("groups", groupService.getAll());
+        model.addAttribute("groups", studyGroupService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("times", lessonTimeService.getAll());
         model.addAttribute("item", scheduleFacade.getItemById(itemId));
@@ -98,7 +98,7 @@ public class ScheduleController {
     public String getCreateItemForm(@PathVariable("scheduleId") Integer scheduleId, Model model) {
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("lessons", lessonService.getAll());
-        model.addAttribute("groups", groupService.getAll());
+        model.addAttribute("groups", studyGroupService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("times", lessonTimeService.getAll());
         model.addAttribute("item", new ScheduleItem());
