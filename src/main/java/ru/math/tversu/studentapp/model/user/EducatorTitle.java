@@ -1,12 +1,11 @@
 package ru.math.tversu.studentapp.model.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class EducatorTitle {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "name")
     private String name;

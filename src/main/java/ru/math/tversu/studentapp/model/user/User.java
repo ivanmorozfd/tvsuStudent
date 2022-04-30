@@ -1,16 +1,13 @@
 package ru.math.tversu.studentapp.model.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "username")
     private String username;

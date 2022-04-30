@@ -28,10 +28,7 @@ public class ScheduleService {
     }
 
     public Schedule createEntity() {
-        Integer lastId = scheduleRepository.findFirstByOrderByIdDesc().getId();
-        Schedule schedule = new Schedule();
-        schedule.setId(++lastId);
-        return schedule;
+        return new Schedule();
     }
 
     public Schedule save(Schedule entity) {
