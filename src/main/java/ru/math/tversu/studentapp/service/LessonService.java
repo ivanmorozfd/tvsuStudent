@@ -25,10 +25,7 @@ public class LessonService {
     }
 
     public Lesson createEntity() {
-        Integer lastId = lessonRepository.findFirstByOrderByIdDesc().getId();
-        Lesson lesson = new Lesson();
-        lesson.setId(++lastId);
-        return lesson;
+        return new Lesson();
     }
 
     public Lesson getNotBoundToAnyScheduleById(Integer id) {

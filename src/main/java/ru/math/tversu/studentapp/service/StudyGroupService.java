@@ -13,10 +13,7 @@ public class StudyGroupService {
 	private StudyGroupRepository studyGroupRepository;
 
 	public StudyGroup createEntity() {
-		Integer lastId = studyGroupRepository.findFirstByOrderByIdDesc().getId();
-		StudyGroup group = new StudyGroup();
-		group.setId(++lastId);
-		return group;
+		return new StudyGroup();
 	}
 
 	public StudyGroup getGroupByStudentUsername(String username) {
@@ -33,6 +30,10 @@ public class StudyGroupService {
 
 	public StudyGroup getNotBoundToAnyScheduleById(Integer id) {
 		return studyGroupRepository.findOneNotBoundToAnyScheduleById(id);
+	}
+
+	public StudyGroup getNotBoundToAnyStudentById(Integer id) {
+		return studyGroupRepository.findOneNotBoundToAnyStudentById(id);
 	}
 
 	public StudyGroup save(StudyGroup group) {

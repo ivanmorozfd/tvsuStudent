@@ -22,14 +22,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT username, password, enabled FROM user WHERE username=?")
-                .authoritiesByUsernameQuery("SELECT username, role FROM user WHERE username=?")
-        ;
+                .authoritiesByUsernameQuery("SELECT username, role FROM user WHERE username=?");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/schedule/management", "schedule/management/*").hasRole("teacher")
+                .mvcMatchers("/user",
+                        "/title").hasAuthority("admin")
+                .mvcMatchers("/schedule/management",
+                        "/studyGroup",
+                        "/lesson",
+                        "/room",
+                        "/lessonTime").hasAnyAuthority("teacher", "admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

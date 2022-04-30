@@ -21,17 +21,11 @@ public class ScheduleService {
     }
 
     public ScheduleItem createItemEntity() {
-        Integer lastId = scheduleItemRepository.findFirstByOrderByIdDesc().getId();
-        ScheduleItem item = new ScheduleItem();
-        item.setId(++lastId);
-        return item;
+        return new ScheduleItem();
     }
 
     public Schedule createEntity() {
-        Integer lastId = scheduleRepository.findFirstByOrderByIdDesc().getId();
-        Schedule schedule = new Schedule();
-        schedule.setId(++lastId);
-        return schedule;
+        return new Schedule();
     }
 
     public Schedule save(Schedule entity) {

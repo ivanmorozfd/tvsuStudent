@@ -19,5 +19,9 @@ public interface StudyGroupRepository extends CrudRepository<StudyGroup, Integer
 			".studyGroup = g) < 1")
 	StudyGroup findOneNotBoundToAnyScheduleById(Integer id);
 
+	@Query("SELECT g FROM StudyGroup g WHERE g.id = :id AND (SELECT COUNT(student) FROM Student student WHERE student" +
+			".studyGroup = g) < 1")
+	StudyGroup findOneNotBoundToAnyStudentById(Integer id);
+
 	StudyGroup findFirstByOrderByIdDesc();
 }
