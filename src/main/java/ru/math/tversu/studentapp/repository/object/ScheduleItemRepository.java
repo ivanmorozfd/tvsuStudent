@@ -6,5 +6,6 @@ import ru.math.tversu.studentapp.model.object.ScheduleItem;
 import java.util.List;
 
 public interface ScheduleItemRepository extends CrudRepository<ScheduleItem, Integer> {
-	List<ScheduleItem> findAll();
+    List<ScheduleItem> findAll();
+    ScheduleItem findFirstByOrderByIdDesc();
 }

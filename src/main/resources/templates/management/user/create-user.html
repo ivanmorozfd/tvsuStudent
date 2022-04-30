@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+</head>
+<body>
+<form action="createUser"
+      th:action="@{/user/create}" method="post">
+    <input type="hidden" th:value="${user.id}" name="id" id="id">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username"> <!-- th:value="${user.username}" -->
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <label for="role">Role</label>
+    <select id="role" name="role" th:value="${user.role}">
+        <option value="admin">Admin</option>
+        <option value="teacher">Teacher</option>
+        <option value="student">Student</option>
+    </select>
+    <input type="submit" value="Save">
+</form>
+<p><a th:href="@{/user}">Back</p>
+</body>
+</html>

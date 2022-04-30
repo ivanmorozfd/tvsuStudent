@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Lesson Times</title>
+</head>
+<body>
+<h1>Lesson Times Management</h1>
+<table>
+    <thead>
+        <td>ID</td>
+        <td>Start Time</td>
+        <td>End Time</td>
+        <td>Weekday</td>
+    </thead>
+    <tbody>
+        <tr th:each="lessonTime : ${lessonTimes}">
+            <td th:text="${lessonTime.id}"></td>
+            <td th:text="${lessonTime.startTime}"></td>
+            <td th:text="${lessonTime.endTime}"></td>
+            <td th:text="${lessonTime.weekday}"></td>
+            <td><a th:href="@{/lessonTime/} + ${lessonTime.id}" th:text="Edit"></td>
+    </tbody>
+</table>
+<p><a th:href="@{/lessonTime/create/}">Create New Lesson Time</p>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>

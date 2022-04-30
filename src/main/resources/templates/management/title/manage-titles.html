@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Titles</title>
+</head>
+<body>
+<h1>Titles Management</h1>
+<table>
+    <thead>
+        <td>ID</td>
+        <td>Name</td>
+    </thead>
+    <tbody>
+        <tr th:each="title : ${titles}">
+            <td th:text="${title.id}"></td>
+            <td th:text="${title.name}"></td>
+            <td><a th:href="@{/title/} + ${title.id}" th:text="Edit"></td>
+    </tbody>
+</table>
+<p><a th:href="@{/title/create/}">Create New Title</p>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>

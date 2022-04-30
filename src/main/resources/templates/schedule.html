@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+</head>
+<body>
+    <h1 th:text="'Schedule ' + ${schedule.id}"></h1>
+    <table>
+        <thead>
+            <tr>ID</tr>
+            <tr>Lesson</tr>
+            <tr>Room</tr>
+            <tr>Group</tr>
+            <tr>Teacher</tr>
+            <tr>Time</tr>
+        </thead>
+        <tbody>
+            <tr th:if="${schedule.items.isEmpty()}">
+                <td colspan="6">No items in this Schedule</td>
+            </tr>
+            <tr th:each="item : ${schedule.items}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.lesson.name}"></td>
+                <td th:text="${item.room.number}"></td>
+                <td th:text="${item.studyGroup.name}"></td>
+                <td th:text="${item.teacher.title.name + ' ' + item.teacher.username}"></td>
+                <td th:text="${item.lessonTime.weekday + ' ' + item.lessonTime.startTime + ' ' + item.lessonTime.endTime}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><a th:href="@{/home}">Back</p>
+</body>
+</html>

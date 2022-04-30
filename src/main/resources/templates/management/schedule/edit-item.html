@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Item</title>
+</head>
+<body>
+<form action="updateItem"
+      th:action="@{/schedule/management/} + ${scheduleId} + @{/update/} + ${itemId}" method="post">
+    <label for="lesson">Lesson</label>
+    <select id="lesson" th:object="${item}" th:field="*{lesson}">
+        <option th:each="lesson : ${lessons}" th:value="${lesson.id}" th:text="${lesson.name}"></option>
+    </select>
+
+    <label for="room">Room</label>
+    <select id="room" th:object="${item}" th:field="*{room}">
+        <option th:each="room : ${rooms}" th:value="${room.id}" th:text="${room.number}"></option>
+    </select>
+
+    <label for="studyGroup">Group</label>
+    <select id="studyGroup" th:object="${item}" th:field="*{studyGroup}">
+        <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+    </select>
+
+    <label for="teacher">Teacher</label>
+    <select id="teacher" th:object="${item}" th:field="*{teacher}">
+        <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.username}"></option>
+    </select>
+
+    <label for="time">Time</label>
+    <select id="time" th:object="${item}" th:field="*{lessonTime}">
+        <option th:each="time : ${times}" th:value="${time.id}" th:text="${time.startTime + '-' + time.endTime + ' ' + time.weekday}"></option>
+    </select>
+    <input type="submit" value="Update">
+</form>
+<p><a th:href="@{/schedule/management/} + ${scheduleId}">Back</p>
+</body>
+</html>
