@@ -25,10 +25,7 @@ public class UserService {
 	}
 
 	public User createEntity() {
-		Integer lastId = userRepository.findFirstByOrderByIdDesc().getId();
-		User user = new User();
-		user.setId(++lastId);
-		return user;
+		return new User();
 	}
 
 	public User save(User user) {
