@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Management</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Schedule ID</td>
+        <td>link</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${schedules.isEmpty()}">
+        <td colspan="2">No schedules</td>
+    </tr>
+    <tr th:each="schedule : ${schedules}">
+        <td th:text="${schedule.id}"></td>
+        <td><a th:href="@{/schedule/management/} + ${schedule.id}" th:text="Edit"></td>
+        <td th:if="${schedule.items.isEmpty()}">
+            <form id="deleteSchedule" th:action="'/schedule/management/delete/' + ${schedule.id}" method="post">
+                <input type="hidden" name="id" th:value="${schedule.id}" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/schedule/management/create}">Create New Schedule</p>
+<div id="manage-links">
+    <p><a th:href="@{/lesson}">Manage Lessons</p>
+    <p><a th:href="@{/studyGroup}">Manage Groups</p>
+    <p><a th:href="@{/room}">Manage Rooms</p>
+    <p><a th:href="@{/lessonTime}">Manage Time</p>
+</div>
+<p><a th:href="@{/home}">Back</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Lessons</title>
+</head>
+<body>
+<h1>Lessons Management</h1>
+<table>
+    <thead>
+        <td>ID</td>
+        <td>Name</td>
+    </thead>
+    <tbody>
+        <tr th:each="lesson : ${lessons}">
+            <td th:text="${lesson.id}"></td>
+            <td th:text="${lesson.name}"></td>
+            <td><a th:href="@{/lesson/} + ${lesson.id}" th:text="Edit"></td>
+    </tbody>
+</table>
+<p><a th:href="@{/lesson/create/}">Create New Lesson</p>
+<p><a th:href="@{/schedule/management/}">Back</p>
+</body>
+</html>

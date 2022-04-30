@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Title</title>
+</head>
+<body>
+<form action="updateTitle"
+      th:action="@{/title/} + ${title.id}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:value="${title.name}" name="name" id="name">
+    <input type="submit" value="Save">
+</form>
+<form th:if="${inactive}" id="deleteTitle" th:action="'/title/delete/' + ${title.id}" method="post">
+    <input type="hidden" name="id" th:value="${title.id}" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+<p><a th:href="@{/title}">Back</p>
+</body>
+</html>

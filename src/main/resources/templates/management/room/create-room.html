@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Room</title>
+</head>
+<body>
+<form action="createRoom"
+      th:action="@{/room/create}" method="post">
+    <label for="number">Number</label>
+    <input type="hidden" th:value="${room.id}" name="id" id="id">
+    <input type="text" th:value="${room.number}" name="number" id="number">
+    <input type="submit" value="Save">
+</form>
+<p><a th:href="@{/room}">Back</p>
+</body>
+</html>

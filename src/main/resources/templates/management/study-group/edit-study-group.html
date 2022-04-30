@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Study Group</title>
+</head>
+<body>
+<form action="updateItem"
+      th:action="@{/studyGroup/} + ${studyGroup.id}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:value="${studyGroup.name}" name="name" id="name">
+    <input type="submit" value="Save">
+</form>
+<form th:if="${inactive}" id="deleteStudyGroup" th:action="'/studyGroup/delete/' + ${studyGroup.id}" method="post">
+    <input type="hidden" name="id" th:value="${studyGroup.id}" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
+<p><a th:href="@{/studyGroup}">Back</p>
+</body>
+</html>
