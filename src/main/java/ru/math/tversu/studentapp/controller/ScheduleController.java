@@ -90,7 +90,7 @@ public class ScheduleController {
 
     @RequestMapping(path = "/management/create", method = RequestMethod.POST)
     public String create() {
-        scheduleFacade.save(scheduleFacade.createEntity());
+        scheduleFacade.save(new Schedule());
         return "redirect:/schedule/management/";
     }
 
