@@ -7,18 +7,18 @@ import ru.math.tversu.studentapp.repository.user.StudentRepository;
 
 @Service
 public class StudentService {
-	@Autowired
-	private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-	public Student getStudentByUsername(String username) {
-		return studentRepository.findOneByUsername(username);
-	}
+    public Student getStudentByUsername(String username) {
+        return studentRepository.findOneByUsername(username);
+    }
 
-	public Student getById(Integer id) {
-		return studentRepository.findById(id).orElse(new Student());
-	}
+    public Student getById(Integer id) {
+        return studentRepository.findById(id).orElse(new Student());
+    }
 
-	public Student save(Student student) {
-		return studentRepository.save(student);
-	}
+    public Student save(Student student) {
+        return studentRepository.save(student);
+    }
 }

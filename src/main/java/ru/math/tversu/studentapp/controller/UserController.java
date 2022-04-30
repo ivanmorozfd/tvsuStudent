@@ -83,14 +83,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createUser(@ModelAttribute("user") User user) {
+	public String createUser(@ModelAttribute("user") User user, Model model) {
+		user.setEnabled(true);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userFacade.saveUser(user);
 		return "redirect:/user/";
 	}
 
 	@RequestMapping(value = "/delete/{userId}", method = RequestMethod.POST)
 	public String deleteUser(@PathVariable("userId") Integer userId) {
-		userFacade.deleteById(userId);
+//		userFacade.deleteById(userId);
 		return "redirect:/user/";
 	}
 }
