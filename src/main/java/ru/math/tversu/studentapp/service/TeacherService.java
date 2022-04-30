@@ -27,4 +27,8 @@ public class TeacherService {
     public Teacher save(Teacher teacher) {
         return teacherRepository.save(teacher);
     }
+
+    public void deleteById(Integer id) {
+        teacherRepository.deleteById(id);
+    }
 }

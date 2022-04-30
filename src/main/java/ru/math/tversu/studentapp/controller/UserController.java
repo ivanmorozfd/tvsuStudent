@@ -45,6 +45,7 @@ public class UserController {
 			model.addAttribute("titles", titleService.getAll());
 		}
 		if (user instanceof Student) {
+			model.addAttribute("inactive", true);
 			model.addAttribute("studyGroups", studyGroupService.getAll());
 		}
 		return "management/user/edit-user";
@@ -92,7 +93,7 @@ public class UserController {
 
 	@RequestMapping(value = "/delete/{userId}", method = RequestMethod.POST)
 	public String deleteUser(@PathVariable("userId") Integer userId) {
-//		userFacade.deleteById(userId);
+		userFacade.deleteById(userId);
 		return "redirect:/user/";
 	}
 }

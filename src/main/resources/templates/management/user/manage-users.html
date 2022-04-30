@@ -10,15 +10,17 @@
     <thead>
     <td>ID</td>
     <td>Username</td>
+    <td>Role</td>
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
+        <td th:text="${user.role}"></td>
         <td><a th:href="@{/user/} + ${user.id}" th:text="Edit"></td>
     </tbody>
 </table>
 <p><a th:href="@{/user/create/}">Create New User</p>
-<p><a th:href="@{/schedule/management/}">Back</p>
+<p><a th:href="@{/}">Back</p>
 </body>
 </html>

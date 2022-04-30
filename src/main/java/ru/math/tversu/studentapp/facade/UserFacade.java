@@ -63,12 +63,18 @@ public class UserFacade {
             if (student.getStudyGroup() != null && student.getStudyGroup().getId() == null) {
                 student.setStudyGroup(null);
             }
+            if (user instanceof Student) {
+                student.setStudyGroup(((Student) user).getStudyGroup());
+            }
             return studentService.save(student);
         }
         if (user instanceof Teacher || user.getRole().equals("teacher")) {
             Teacher teacher = new Teacher(user);
             if (teacher.getTitle() != null && teacher.getTitle().getId() == null) {
                 teacher.setTitle(null);
+            }
+            if (user instanceof Teacher) {
+                teacher.setTitle(((Teacher) user).getTitle());
             }
             return teacherService.save(teacher);
         }

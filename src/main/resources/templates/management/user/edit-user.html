@@ -25,6 +25,10 @@
     </select>
     <input type="submit" value="Save">
 </form>
+<form th:if="${inactive}" id="deleteUser" th:action="'/user/delete/' + ${user.id}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</form>
 <p><a th:href="@{/user}">Back</p>
 </body>
 </html>

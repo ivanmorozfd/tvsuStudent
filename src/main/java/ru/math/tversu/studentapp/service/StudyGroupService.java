@@ -32,6 +32,10 @@ public class StudyGroupService {
 		return studyGroupRepository.findOneNotBoundToAnyScheduleById(id);
 	}
 
+	public StudyGroup getNotBoundToAnyStudentById(Integer id) {
+		return studyGroupRepository.findOneNotBoundToAnyStudentById(id);
+	}
+
 	public StudyGroup save(StudyGroup group) {
 		return studyGroupRepository.save(group);
 	}

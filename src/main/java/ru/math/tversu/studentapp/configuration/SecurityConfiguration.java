@@ -28,12 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/user").hasAuthority("admin")
+                .mvcMatchers("/user",
+                        "/title").hasAuthority("admin")
                 .mvcMatchers("/schedule/management",
                         "/studyGroup",
                         "/lesson",
                         "/room",
-                        "/lessonTime").hasAuthority("teacher")
+                        "/lessonTime").hasAnyAuthority("teacher", "admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

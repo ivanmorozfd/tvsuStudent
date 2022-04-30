@@ -21,10 +21,7 @@ public class TitleService {
 	}
 
 	public EducatorTitle createEntity() {
-		Integer id = titleRepository.findFirstByOrderByIdDesc().getId();
-		EducatorTitle title = new EducatorTitle();
-		title.setId(++id);
-		return title;
+		return new EducatorTitle();
 	}
 
 	public EducatorTitle save(EducatorTitle title) {
@@ -33,5 +30,9 @@ public class TitleService {
 
 	public void deleteById(Integer id) {
 		titleRepository.deleteById(id);
+	}
+
+	public EducatorTitle getNotBoundToAnyTeacherById(Integer id) {
+		return titleRepository.findOneNotBoundToAnyTeacherById(id);
 	}
 }
