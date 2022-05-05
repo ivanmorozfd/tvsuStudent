@@ -25,8 +25,9 @@
                 </tbody>
             </table>
         </div>
-        <p th:if="${role.toString()} == 'teacher'"><a th:href="@{/schedule/management/}">Manage schedules</p>
+        <p th:if="${role.toString() == 'teacher' OR role.toString() == 'admin'}"><a th:href="@{/schedule/management/}">Manage schedules</p>
         <p th:if="${role.toString()} == 'admin'"><a th:href="@{/user/}">See users</p>
+        <p th:if="${role.toString()} == 'admin'"><a th:href="@{/title/}">See titles</p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Logout"/>
         </form>

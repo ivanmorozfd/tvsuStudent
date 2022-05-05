@@ -24,7 +24,7 @@
                 <td th:text="${item.lesson.name}"></td>
                 <td th:text="${item.room.number}"></td>
                 <td th:text="${item.studyGroup.name}"></td>
-                <td th:text="${item.teacher.title.name + ' ' + item.teacher.username}"></td>
+                <td th:if="${item.teacher.title != null}" th:text="${item.teacher.title.name + ' ' + item.teacher.username}"></td>
                 <td th:text="${item.lessonTime.weekday + ' ' + item.lessonTime.startTime + ' ' + item.lessonTime.endTime}"></td>
             </tr>
         </tbody>

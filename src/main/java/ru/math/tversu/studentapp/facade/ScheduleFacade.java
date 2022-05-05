@@ -2,6 +2,7 @@ package ru.math.tversu.studentapp.facade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.DateUtils;
 import ru.math.tversu.studentapp.model.object.Schedule;
 import ru.math.tversu.studentapp.model.object.ScheduleItem;
 import ru.math.tversu.studentapp.model.user.Student;
@@ -9,7 +10,9 @@ import ru.math.tversu.studentapp.model.user.StudyGroup;
 import ru.math.tversu.studentapp.service.ScheduleService;
 import ru.math.tversu.studentapp.service.StudentService;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,6 +68,11 @@ public class ScheduleFacade {
         Schedule schedule = scheduleService.getById(id);
         if (schedule != null && schedule.getItems() == null) {
             schedule.setItems(new ArrayList<>());
+        }
+        if (schedule != null) {
+            schedule.setItems(schedule.getItems().stream().sorted(
+                    Comparator.comparingInt(o -> o.getLessonTime().getWeekday().getValue())).collect(
+                    Collectors.toList()));
         }
         return schedule;
     }
