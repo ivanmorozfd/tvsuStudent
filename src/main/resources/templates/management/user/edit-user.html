@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Teacher</title>
+    <title>Edit User</title>
 </head>
 <body>
+<h1>Edit User</h1>
 <form action="updateUser"
       th:action="@{/user/} + ${user.id}" method="post">
     <h3 th:text="'Username: ' + ${user.username}"></h3>
