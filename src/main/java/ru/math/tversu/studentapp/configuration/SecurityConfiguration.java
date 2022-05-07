@@ -1,5 +1,7 @@
 package ru.math.tversu.studentapp.configuration;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,8 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -28,17 +28,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/user",
-                        "/title").hasAuthority("admin")
-                .mvcMatchers("/schedule/management",
+                .antMatchers("/**/*.css", "/**/*.svg").permitAll()
+                .mvcMatchers("/user", "/title").hasAuthority("admin")
+                .mvcMatchers(
+                        "/schedule/management",
                         "/studyGroup",
                         "/lesson",
                         "/room",
                         "/lessonTime").hasAnyAuthority("teacher", "admin")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/perform-login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/home")
+                    .permitAll()
                 .and()
-                .logout().permitAll();
+                .logout()
+                .permitAll();
     }
 }

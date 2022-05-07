@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+.logo {
+    padding-left: 41px;
+}
+
+.logo img {
+    width: 237px;
+    height: 84.23px;
+}
+
+.loginform {
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -225px 0 0 -225px;
+}
+
+.loginform h1 {
+    color: #183AB1;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 7px;
+    line-height: 100%;
+    vertical-align: top;
+}
+
+.last-word {
+    color: #FF0047;
+}
+
+#input-type-username {
+    border: 2.20015px solid #EEEEEE;
+    border-radius: 66.0044px;
+    margin-top: 12px;
+    stroke: #EEEEEE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 450px;
+    height: 80px;
+}
+
+#input-type-password {
+    border: 2.20015px solid #EEEEEE;
+    border-radius: 66.0044px;
+    margin-top: 20px;
+    stroke: #EEEEEE;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 450px;
+    height: 80px;
+}
+
+#input-username-error {
+    border: 2.20015px solid #CC1818;
+    border-radius: 66.0044px;
+    margin-top: 12px;
+    stroke: #EEEEEE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 450px;
+    height: 80px;
+}
+
+#input-password-error {
+    border: 2.20015px solid #CC1818;
+    border-radius: 66.0044px;
+    margin-top: 20px;
+    stroke: #EEEEEE;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 450px;
+    height: 80px;
+}
+
+.img-username {
+    width: 100px;
+    position: absolute;
+    padding: 30px;
+    margin-left: 10px;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.img-password {
+    width: 100px;
+    position: absolute;
+    padding: 30px;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+#form-group input {
+    text-indent: 70px;
+    font-size: 17px;
+    font-family: 'Poppins';
+}
+
+::placeholder {
+    opacity: 70%;
+}
+
+#login-button {
+    font-size: 17px;
+    font-family: 'Poppins';
+    background-color: #183AB1;
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 66.0044px;
+    margin-top: 20px;
+    stroke: #EEEEEE;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 450px;
+    height: 80px;
+}
+
+#login-button:hover {
+    background-color: #2450f0;
+}
+
+#error-block {
+    color: #CC1818;
+    text-align: center;
+    margin-top: 15px;
+}
+
