@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{css/login.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Войти</title>
+</head>
+<body>
+<!-- header -->
+    <div class="header">
+        <div class="logo">
+        <img src="img/logo.svg" alt="Vkurse">
+        </div>
+    </div>
+
+    <!-- form -->
+    <div class="loginform">
+        <h1>Sign <span class = "last-word">In</span></h1>
+        <form method="post" th:action="@{/perform-login}">
+            <div id="form-group">
+                <div id="form-group-username">
+                    <img class = "img-username" src="img/codicon_mail.svg"/>
+                    <input type="text" name="username" th:id="${param.error} ? 'input-username-error' : 'input-type-username'" placeholder="Username"/>
+                </div>
+                <div id="form-group-password">
+                    <img class = "img-password" src="img/codicon_lock.svg"/>
+                    <input type="password" name="password" th:id="${param.error} ? 'input-password-error' : 'input-type-password'" placeholder="Password"/>
+                </div>
+                <div id="form-group-submit">
+                    <button id="login-button">Login</button>
+                </div>
+                <!-- error block -->
+                <div id="error-block" th:if="${param.error}">
+                    <p>Username/Password combination is not valid</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
