@@ -73,7 +73,7 @@ public class ScheduleController {
         ScheduleItem item = scheduleFacade.getItemById(itemId);
         item.setLesson(lesson);
         item.setRoom(room);
-        item.setStudyGroup(studyGroup);
+        //item.setStudyGroup(studyGroup);
         item.setTeacher(teacher);
         item.setLessonTime(lessonTime);
         scheduleFacade.saveItem(item);
@@ -116,7 +116,7 @@ public class ScheduleController {
         ScheduleItem item = scheduleFacade.createItemEntity();
         item.setLesson(lesson);
         item.setRoom(room);
-        item.setStudyGroup(studyGroup);
+        //item.setStudyGroup(studyGroup);
         item.setTeacher(teacher);
         item.setLessonTime(lessonTime);
         scheduleFacade.saveItem(item, scheduleId);

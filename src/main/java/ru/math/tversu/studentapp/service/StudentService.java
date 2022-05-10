@@ -1,28 +1,32 @@
 package ru.math.tversu.studentapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 import ru.math.tversu.studentapp.model.user.Student;
 import ru.math.tversu.studentapp.repository.user.StudentRepository;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
-    @Autowired
-    private StudentRepository studentRepository;
 
-    public Student getStudentByUsername(String username) {
-        return studentRepository.findOneByUsername(username);
-    }
+  private final StudentRepository studentRepository;
 
-    public Student getById(Integer id) {
-        return studentRepository.findById(id).orElse(new Student());
-    }
+  public Optional<Student> findByUsername(String username) {
+    return studentRepository.findByUsername(username);
+  }
 
-    public Student save(Student student) {
-        return studentRepository.save(student);
-    }
+  public Student getById(Integer id) {
+    return studentRepository.findById(id).orElse(new Student());
+  }
 
-    public void deleteById(Integer id) {
-        studentRepository.deleteById(id);
-    }
+  public Student save(Student student) {
+    return studentRepository.save(student);
+  }
+
+  public void deleteById(Integer id) {
+    studentRepository.deleteById(id);
+  }
 }

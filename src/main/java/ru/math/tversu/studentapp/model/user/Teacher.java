@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @ToString
 public class Teacher extends User {
+
     @ManyToOne
     @Nullable
     private EducatorTitle title;

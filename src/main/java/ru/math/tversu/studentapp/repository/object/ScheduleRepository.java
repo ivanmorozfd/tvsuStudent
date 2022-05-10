@@ -8,4 +8,5 @@ import java.util.List;
 public interface ScheduleRepository extends CrudRepository<Schedule, Integer> {
     List<Schedule> findAll();
     Schedule findFirstByOrderByIdDesc();
+    List<Schedule> findByStudyGroupNameAndWeekType(String groupName, Schedule.WeekType weekType);
 }

@@ -1,35 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+    <link th:href="@{css/home.css}" rel="stylesheet"/>
+    <link th:href="@{css/normilize.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Rubik:wght@300;500&display=swap" rel="stylesheet">    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Домашняя страница</title>
 </head>
+
 <body>
-    <h1 th:text="'Hello, ' + ${username}"></h1>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Schedule ID</td>
-                        <td>link</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:if="${schedules.isEmpty()}">
-                        <td colspan="2">No schedules</td>
-                    </tr>
-                    <tr th:each="schedule : ${schedules}">
-                        <td th:text="${schedule.id}"></td>
-                        <td><a th:href="@{/schedule/} + ${schedule.id}" th:text="View"></td>
-                    </tr>
-                </tbody>
-            </table>
+<!-- header -->
+<div class="header">
+    <div class="logo">
+        <img src="img/logo.svg" alt="Vkurse">
+    </div>
+    <div class="user-title">
+        <p><th:block th:text="${role == 'STUDENT'} ? ${groupName} : ${role}"/></p>
+    </div>
+    <div class="usr-info-block">
+        <img src="img/user-flat.svg" class="usr-img"/>
+        <p class="usr-name" th:text="${userFullName}"></p>
+    </div>
+</div>
+
+<!--menu block-->
+<div class="menu-block">
+    <div class="menu">
+        <div class="menu-item" th:if="${role == 'STUDENT'}">
+            <img src="img/mono-schedule.svg"/>
+            <a href="#">Расписание занятий</a>
         </div>
-        <p th:if="${role.toString() == 'teacher' OR role.toString() == 'admin'}"><a th:href="@{/schedule/management/}">Manage schedules</p>
-        <p th:if="${role.toString()} == 'admin'"><a th:href="@{/user/}">See users</p>
-        <p th:if="${role.toString()} == 'admin'"><a th:href="@{/title/}">See titles</p>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Logout"/>
-        </form>
+        <div class="menu-item" th:if="${role == 'STUDENT'}">
+            <img src="img/exam.svg"/>
+            <a href="#">Расписание экзаменов</a>
+        </div>
+        <div class="menu-item" th:if="${role == 'ADMIN' || role == 'TEACHER'}">
+            <img src="img/mono-schedule2.svg"/>
+            <a href="#">Управление расписаниями</a>
+        </div>
+        <div class="menu-item" th:if="${role == 'ADMIN' || role == 'TEACHER'}">
+            <img src="img/users.svg" class="icon"/>
+            <a href="#">Управление студентами</a>
+        </div>
+        <div class="menu-item" th:if="${role == 'ADMIN' || role == 'TEACHER'}">
+            <img src="img/teacher.svg"/>
+            <a href="#">Управление преподавателями</a>
+        </div>
+        <!--logout block-->
+        <div class="logout">
+            <div class="logout-item">
+                <img src="img/exit.svg"/>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout-btn">Выйти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="week-shoose-block" th:if="${role == 'STUDENT'}">
+    <div th:class="${scheduleWeekType == 'PLUS'} ? 'week-shoose-block-plus-highlight' : 'week-shoose-block-plus'">
+        <a href="/home?schedule=PLUS" class="week-shoose-block-plus-href">
+            <img src="img/icon-plus.svg"/>
+        </a>
+    </div>
+    <div th:class="${scheduleWeekType == 'MINUS'} ? 'week-shoose-block-minus-highlight' : 'week-shoose-block-minus'">
+        <a href="/home?schedule=MINUS" class="week-shoose-block-minus-href">
+            <img src="img/icon-minus.svg"/>
+        </a>
+    </div>
+</div>
+
+<!--schedule block-->
+<div class="schedule-body" th:if="${role == 'STUDENT'}">
+    <div class="schedule-block" th:each="day : ${scheduleDays}">
+        <h5><th:block th:text="${day.dayOfWeek.getDisplayName(T(java.time.format.TextStyle).FULL_STANDALONE, new java.util.Locale('ru'))}"></th:block></h5>
+        <div class="schedule-item" th:each="item : ${day.items}">
+            <h5><th:block th:text="${item.lesson.name}"/></h5>
+            <div class="schedule-item-time">
+                <p><th:block th:text="${item.lessonTime.startTime} + ' - ' + ${item.lessonTime.endTime}"></th:block></p>
+            </div>
+            <div class="teacher-info">
+                <h8>Преподаватель:</h8>
+                <p><th:block th:text="${item.teacher.fullName}"></th:block></p>
+            </div>
+            <div class="room-info">
+                <h8>Кабинет:</h8>
+                <p><th:block th:text="${item.room.number}"></th:block></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

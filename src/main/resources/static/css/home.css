@@ -1,0 +1,333 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    height: 100%;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    border-bottom: 1.38341px solid #183AB1;
+}
+
+.logo {
+    padding-left: 41px;
+}
+
+.logo img {
+    width: 237px;
+    height: 84.23px;
+}
+
+.user-title {
+    background-color: #183AB1;
+    width: 145px;
+    height: 47px;
+    margin-top: 25px;
+    margin-left: 70px;
+    border-radius: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Rubik';
+    font-weight: 400;
+}
+
+.usr-info-block {
+    width: 232px;
+    height: 67px;
+    display: flex;
+    margin: auto 0 auto auto;
+    font-family: 'Poppins';
+}
+
+.usr-img {
+    width: 65px;
+    height: 65px;
+}
+
+.usr-name {
+    margin-top: 6px;
+    margin-left: 20px;
+}
+
+.menu-block {
+    border-right: 1.38341px solid #183AB1;
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    margin-left: -3px;
+    top: 30px;
+}
+
+.menu {
+    width: 300px;
+    height: 100%;
+    margin-top: 60px;
+}
+
+.menu-item {
+    display: flex;
+    color: black;
+    border: 0;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 0px;
+    border-radius: 66.0044px;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+.menu-item a {
+    display: block;
+    font-family: 'Poppins';
+    color: inherit;
+    height: 100%;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.menu-item img {
+    width: 24px;
+    height: 24px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-item:hover {
+    border: 0.5px solid #183AB1;
+}
+
+.logout {
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #183AB1;
+    width: 100%;
+}
+
+.logout-item {
+    display: flex;
+    color: black;
+    border: 0;
+    height: 50px;
+    margin-left: 15px;
+    margin-right: 0px;
+    border-radius: 66.0044px;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+.logout-item form {
+    margin-top: 0px;
+}
+
+.logout-item:hover {
+    border: 0.5px solid #183AB1;
+}
+
+.logout-item img {
+    width: 20px;
+    height: 20px;
+    margin-top: 14px;
+    margin-left: 3px;
+}
+
+.logout-btn {
+    display: block;
+    border: none;
+    font-family: 'Poppins';
+    background-color: #FFFFFF;
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.schedule-body {
+    overflow-x: scroll;
+    position: relative;
+    display: flex;
+    width: auto;
+    height: 100%;
+    margin-left: 297px;
+}
+
+.week-shoose-block {
+    margin-top: 20px;
+    margin-left: 347px;
+    width: 256px;
+    height: 48px;
+}
+
+.week-shoose-block a {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.week-shoose-block-plus {
+    width: 122px;
+    height: 48px;
+    text-align: center;
+    float: left;
+    font-size: 30px;
+    border: 1px solid #787486;
+    border-radius: 6px;
+}
+
+.week-shoose-block-plus-highlight {
+    width: 122px;
+    height: 48px;
+    text-align: center;
+    float: left;
+    font-size: 30px;
+    border: 1px solid #183AB1;
+    border-radius: 6px;
+}
+
+.week-shoose-block-minus-highlight {
+    width: 122px;
+    height: 48px;
+    text-align: center;
+    float: right;
+    font-size: 30px;
+    border: 1px solid #183AB1;
+    border-radius: 6px;
+}
+
+.week-shoose-block-minus {
+    width: 122px;
+    height: 48px;
+    text-align: center;
+    float: right;
+    font-size: 30px;
+    border: 1px solid #787486;
+    border-radius: 6px;
+}
+
+.week-shoose-block-plus:hover {
+    width: 122px;
+    height: 48px;
+    text-align: center;
+    float: left;
+    font-size: 30px;
+    border: 1px solid #183AB1;
+    border-radius: 6px;
+}
+
+.week-shoose-block-minus:hover {
+    width: 122px;
+    height: 48px;
+    text-align: center;
+    float: right;
+    font-size: 30px;
+    border: 1px solid #183AB1;
+    border-radius: 6px;
+}
+
+.schedule-block {
+    background: #F6F6F6;
+    font-family: 'Rubik', medium;
+    border-radius: 17px;
+    font-weight: bold;
+    display: table;
+    width: 327px;
+    height: 700px;
+    max-height: 100%;
+    margin-top: 25px;
+    margin-left: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.schedule-block h5 {
+    text-transform: capitalize;
+}
+
+.schedule-item {
+    background: #E0E4EA;
+    font-family: 'Rubik';
+    font-weight: 500;
+    width: 290px;
+    height: auto;
+    border-radius: 17px;
+    padding-left: 20px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+}
+
+.schedule-item h5 {
+    margin-bottom: 0px;
+    padding-top: 10px;
+}
+
+.schedule-block h5 {
+    margin-top: 10px;
+}
+
+.schedule-item-time {
+    background: #FF9533;
+    color: #F6F6F6;
+    font-family: 'Rubik';
+    font-weight: 100;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 0px;
+    width: 103px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.teacher-info {
+    color: #6C6C6C;
+    margin-top: 10px;
+}
+
+.teacher-info h8 {
+    color: #6C6C6C;
+    font-family: 'Rubik';
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 20px;
+}
+
+.teacher-info p {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: black;
+}
+
+.room-info {
+    color: #6C6C6C;
+    margin-top: 10px;
+}
+
+.room-info h8 {
+    color: #6C6C6C;
+    font-family: 'Rubik';
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 20px;
+}
+
+.room-info p {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: black;
+}
