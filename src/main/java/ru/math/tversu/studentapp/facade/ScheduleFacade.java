@@ -1,42 +1,52 @@
 package ru.math.tversu.studentapp.facade;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import static java.util.Comparator.comparing;
+import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.DateUtils;
+
+import lombok.RequiredArgsConstructor;
+import ru.math.tversu.studentapp.dto.ScheduleDayDto;
 import ru.math.tversu.studentapp.model.object.Schedule;
 import ru.math.tversu.studentapp.model.object.ScheduleItem;
 import ru.math.tversu.studentapp.model.user.Student;
-import ru.math.tversu.studentapp.model.user.StudyGroup;
 import ru.math.tversu.studentapp.service.ScheduleService;
-import ru.math.tversu.studentapp.service.StudentService;
-
-import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ScheduleFacade {
-    @Autowired
-    private ScheduleService scheduleService;
-    @Autowired
-    private StudentService studentService;
 
-    public List<Schedule> getSchedulesForUsername(String username) {
-        Student currentStudent = studentService.getStudentByUsername(username);
-        if (currentStudent != null) {
-            StudyGroup currentStudentGroup = currentStudent.getStudyGroup();
-            if (currentStudentGroup != null) {
-                return scheduleService.getAll().stream().filter(
-                        schedule -> schedule.getItems().stream().anyMatch(
-                                item -> item.getStudyGroup().equals(currentStudentGroup)
-                        )
-                ).collect(Collectors.toList());
-            }
-        }
-        return new ArrayList<>();
+  private final ScheduleService scheduleService;
+
+  public List<ScheduleDayDto> getScheduleDays(Student student, Schedule.WeekType weekType) {
+    if (isNull(student.getStudyGroup())) {
+      return Collections.emptyList();
     }
+
+    var schedules =
+        scheduleService.getByGroupNameAndWeekType(student.getStudyGroup().getName(), weekType);
+    if (schedules.isEmpty()) {
+      return Collections.emptyList();
+    }
+
+    return schedules.get(0).getItems().stream()
+        .collect(groupingBy(item -> item.getLessonTime().getWeekday()))
+        .entrySet()
+        .stream()
+        .map(entry -> new ScheduleDayDto(entry.getKey(), entry.getValue()))
+        .sorted(comparing(ScheduleDayDto::getDayOfWeek))
+        .collect(toList());
+  }
 
     public Schedule save(Schedule entity) {
         return scheduleService.save(entity);
@@ -72,7 +82,7 @@ public class ScheduleFacade {
         if (schedule != null) {
             schedule.setItems(schedule.getItems().stream().sorted(
                     Comparator.comparingInt(o -> o.getLessonTime().getWeekday().getValue())).collect(
-                    Collectors.toList()));
+                    toList()));
         }
         return schedule;
     }
@@ -91,7 +101,7 @@ public class ScheduleFacade {
 
     public void deleteItemById(Integer scheduleId, Integer itemId) {
         Schedule schedule = scheduleService.getById(scheduleId);
-        schedule.setItems(schedule.getItems().stream().filter(item -> !item.getId().equals(itemId)).collect(Collectors.toList()));
+        schedule.setItems(schedule.getItems().stream().filter(item -> !item.getId().equals(itemId)).collect(toList()));
         save(schedule);
         scheduleService.deleteItemById(itemId);
     }

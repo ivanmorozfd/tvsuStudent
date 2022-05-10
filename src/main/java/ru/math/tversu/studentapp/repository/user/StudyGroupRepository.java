@@ -15,8 +15,8 @@ public interface StudyGroupRepository extends CrudRepository<StudyGroup, Integer
 			"WHERE u.username = :username")
 	StudyGroup findGroupByStudentUsername(String username);
 
-	@Query("SELECT g FROM StudyGroup g WHERE g.id = :id AND (SELECT COUNT(item) FROM ScheduleItem item WHERE item" +
-			".studyGroup = g) < 1")
+	// TODO: for refactor
+	@Query("SELECT g FROM StudyGroup g WHERE g.id = :id")
 	StudyGroup findOneNotBoundToAnyScheduleById(Integer id);
 
 	@Query("SELECT g FROM StudyGroup g WHERE g.id = :id AND (SELECT COUNT(student) FROM Student student WHERE student" +

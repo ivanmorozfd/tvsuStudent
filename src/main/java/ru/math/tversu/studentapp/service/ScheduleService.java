@@ -11,10 +11,16 @@ import java.util.List;
 
 @Service
 public class ScheduleService {
+
     @Autowired
     private ScheduleRepository scheduleRepository;
+
     @Autowired
     private ScheduleItemRepository scheduleItemRepository;
+
+    public List<Schedule> getByGroupNameAndWeekType(String groupName, Schedule.WeekType weekType) {
+        return scheduleRepository.findByStudyGroupNameAndWeekType(groupName, weekType);
+    }
 
     public List<Schedule> getAll() {
         return scheduleRepository.findAll();
